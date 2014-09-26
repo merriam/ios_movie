@@ -31,13 +31,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wbc-TZ-nwm">
-                                                    <rect key="frame" x="8" y="8" width="110" height="116"/>
+                                                    <rect key="frame" x="8" y="8" width="89" height="124"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VKU-ry-DYz">
-                                                    <rect key="frame" x="125" y="37" width="194" height="87"/>
+                                                    <rect key="frame" x="126" y="37" width="194" height="87"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -45,6 +45,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="movieTitleLabel" destination="Vqi-Eg-G9n" id="db4-mG-Ehv"/>
+                                            <outlet property="posterView" destination="wbc-TZ-nwm" id="hTD-zV-FDQ"/>
                                             <outlet property="synopsisLabel" destination="VKU-ry-DYz" id="Qxe-Ne-uSp"/>
                                         </connections>
                                     </tableViewCell>
