@@ -8,11 +8,14 @@
 
 import UIKit
 
+var movies: [NSDictionary] = []
+var currentMovie: NSDictionary = NSDictionary()  // total kludge for passing variables
+
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var movies: [NSDictionary] = []
+    // var movies: [NSDictionary] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +26,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         var url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=zptatrrdy26ps6s3nj9hd6bs&limit=20&country=us"
         
         var request = NSURLRequest(URL: NSURL(string: url))
-        var request2 = NSURLRequest(URL: NSURL(string: "yourkeygoeshere"))
-        var x = NSURL(string: url)
-        var y = NSURLRequest(URL: x)
-        
+
         
         NSURLConnection.sendAsynchronousRequest(
             request,
@@ -36,8 +36,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 in
                 var object = NSJSONSerialization.JSONObjectWithData(data, options: nil, error:nil) as NSDictionary
                 
-                println("object: \(object)")
-                self.movies = object["movies"] as [NSDictionary]
+                // println("object: \(object)")
+                movies = object["movies"] as [NSDictionary]
                 self.tableView.reloadData()
         }
     }
@@ -52,8 +52,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->
-        //  what's that mean in the declaration  the second
-        UITableViewCell {
+        UITableViewCell
+    {
             println("I'm at row \(indexPath.row), section \(indexPath.section)")
             
             var cell = tableView.dequeueReusableCellWithIdentifier("MovieCell") as MovieCell
@@ -74,14 +74,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             return cell
     }
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        var view_to_show = segue.destinationViewController as UIViewController
+        if segue.identifier == "Detail Segue" {
+            println("Passing the right thing")
+            var row = self.tableView.indexPathForSelectedRow()?.row
+            println("Row is \(row)")
+            var detail = segue.destinationViewController as DetailViewController
+            detail.index = row
+            
+        }
+        println("Segue to \(view_to_show.title)")
     }
-    */
-    
 }
